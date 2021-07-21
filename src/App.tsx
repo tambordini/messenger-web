@@ -1,8 +1,8 @@
 import React from "react";
-import "./App.css";
+import Dashboard from "./components/messenger/Dashboard";
 
-function App() {
-  return <div className="app"></div>;
-}
+const App: React.FC = () => {
+  return <Dashboard />;
+};
 
 export default App;

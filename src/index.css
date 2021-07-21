@@ -1,8 +1,80 @@
-* {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  padding: 0;
+  background-color: #242526;
+  color: #fff;
+  height: 100vh;
+  font-family: "Athiti", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.user-item {
+  padding: 1rem;
+  border: 1px solid red;
+  width: 25%;
+  max-width: 395px;
+  min-width: 395px;
+}
+
+.user-item .label {
+  font-weight: 500;
+  font-size: 2rem;
+}
+
+.icon-background {
+  background-color: gray;
+  height: 36px;
+  width: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.icon-background:hover {
+  background: rgb(143, 143, 143);
+}
+
+@media screen and (max-width: 850px) {
+  .user-item {
+    max-width: 100px;
+    min-width: 100px;
+  }
+
+  .user-item .header-mobile {
+    display: none;
+  }
+}
+
+.chat-screen {
+  padding: 1rem;
+  border: 1px solid red;
+  width: 100%;
+}
+
+.search-box {
+  background-color: gray;
+  border-radius: 2rem;
+}
+
+.search-input {
+  background: url("./assets/img/search_white_24dp.svg") no-repeat 10px 8px;
+  color: white;
+  padding: 0.5rem;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
+}
+
+input::placeholder {
+  color: white;
 }
