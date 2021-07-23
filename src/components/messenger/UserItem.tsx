@@ -4,8 +4,12 @@ import moreButton from "../../assets/img/more_horiz_white_24dp.svg";
 import videoCallButton from "../../assets/img/video_call_white_24dp.svg";
 
 const UserItem: React.FC = () => {
-  const numberOfUser = Array.of(1, 2, 3, 4, 5, 6, 7);
+  const numberOfUser = Array.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11);
   const [searchMessage, setSearchMessage] = useState<string | undefined>("");
+
+  const handleTextEllipsis = (text: string): string => {
+    return text.length > 20 ? text.slice(0, 20).concat("...") : text;
+  };
 
   return (
     <div>
@@ -48,16 +52,20 @@ const UserItem: React.FC = () => {
         {numberOfUser.map((_, index) => {
           return (
             <div key={index} className="user-list">
-              <img
-                className="user-image mr-3"
-                alt="."
-                key={index}
-                src={`https://source.unsplash.com/random`}
-              />
+              <div className="image-container mr-3">
+                <img
+                  className="user-image"
+                  alt="."
+                  key={index}
+                  src={`https://source.unsplash.com/random`}
+                />
+                <div className="status-circle online"></div>
+              </div>
               <div className="user-content">
                 <label>Bordin Intarama</label>
                 <div className="flex">
-                  <p>You: 5555</p>
+                  <p>You: &nbsp;</p>
+                  <p>{handleTextEllipsis("สวัสดีครับ")}</p>
                   <p className="ml-1 mr-1"> · </p>
                   <p>30 นาที</p>
                 </div>

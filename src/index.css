@@ -112,6 +112,31 @@ input::placeholder {
   background-color: rgb(76, 88, 114);
 }
 
+.image-container {
+  width: 60px;
+  height: 60px;
+  position: relative;
+}
+
+.status-circle {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+}
+
+.status-circle.online {
+  background-color: #31a24c;
+  border: 2px solid black;
+}
+
+.status-circle.offline {
+  background-color: grey;
+  border: 2px solid white;
+}
+
 p {
   font-size: 12px;
 }
