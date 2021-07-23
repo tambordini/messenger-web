@@ -3,18 +3,96 @@ import newMessageButton from "../../assets/img/add_comment_white_24dp.svg";
 import moreButton from "../../assets/img/more_horiz_white_24dp.svg";
 import videoCallButton from "../../assets/img/video_call_white_24dp.svg";
 
-const UserItem: React.FC = () => {
-  const numberOfUser = Array.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11);
-  const [searchMessage, setSearchMessage] = useState<string | undefined>("");
+const mockData = [
+  {
+    id: 1,
+    name: "Kitsada Khamthamun",
+    imageUrl: "https://picsum.photos/id/",
+    messages: [],
+    latestMessage: "55555",
+    sendTime: "1",
+    sendTimeUnitId: 1,
+    read: null,
+  },
+  {
+    id: 11,
+    name: "รุ่งทิวา อินทรมา",
+    imageUrl: "https://picsum.photos/id/",
+    messages: [],
+    latestMessage: "รุ่งทิวา ได้ส่งรูปภาพ",
+    sendTime: "32",
+    sendTimeUnitId: 2,
+    read: null,
+  },
+  {
+    id: 21,
+    name: "ปาป้า ไหน ❤️",
+    imageUrl: "https://picsum.photos/id/",
+    messages: [],
+    latestMessage: "55555",
+    sendTime: "1",
+    sendTimeUnitId: 3,
+    read: null,
+  },
+  {
+    id: 31,
+    name: "Waint Klinkasen",
+    imageUrl: "https://picsum.photos/id/",
+    messages: [],
+    latestMessage: "",
+    sendTime: "1",
+    sendTimeUnitId: 3,
+    read: null,
+  },
+  {
+    id: 41,
+    name: "Odds CB",
+    imageUrl: "https://picsum.photos/id/",
+    messages: [],
+    latestMessage: "Nuttawut ได้ส่งไฟล์แนบ",
+    sendTime: "2",
+    sendTimeUnitId: 3,
+    read: null,
+  },
+];
 
-  const handleTextEllipsis = (text: string): string => {
-    return text.length > 20 ? text.slice(0, 20).concat("...") : text;
+const UserItem: React.FC = () => {
+  const [searchMessage, setSearchMessage] = useState<string | undefined>("");
+  const [activeItem, setActiveItem] = useState<number | undefined>(0);
+
+  const handleOnClickItem = (indexItem: number) => {
+    setActiveItem(indexItem);
+  };
+
+  const getTextEllipsis = (text: string): string => {
+    return text.length > 25 ? text.slice(0, 25).concat("...") : text;
+  };
+
+  const getSendUnitTime = (unitTimeId: number): string => {
+    switch (unitTimeId) {
+      case 1:
+        return "วินาที";
+      case 2:
+        return "นาที";
+      case 3:
+        return "ชม.";
+      case 4:
+        return "วัน";
+      case 5:
+        return "สัปดาห์";
+      case 6:
+        return "เดือน";
+      case 7:
+        return "ปี";
+      default:
+        return "";
+    }
   };
 
   return (
     <div>
       <div className="header-mobile flex justify-between items-center mb-4">
-        <label className="label">Chat</label>
+        <label className="label">แชท</label>
         <div className="flex">
           <div
             className="more-button icon-background cursor-pointer ml-2 mr-2"
@@ -40,7 +118,7 @@ const UserItem: React.FC = () => {
       <div className="search-box mb-4">
         <input
           className="search-input w-full"
-          placeholder="Search Messenger"
+          placeholder="ค้นหา Messenger"
           value={searchMessage}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
             setSearchMessage(event.target.value)
@@ -49,25 +127,33 @@ const UserItem: React.FC = () => {
       </div>
 
       <div className="user-list-box">
-        {numberOfUser.map((_, index) => {
+        {mockData.map((data, index) => {
           return (
-            <div key={index} className="user-list">
+            <div
+              key={data.id}
+              className={
+                activeItem === index ? "user-list active" : "user-list"
+              }
+              onClick={() => handleOnClickItem(index)}
+            >
               <div className="image-container mr-3">
                 <img
                   className="user-image"
                   alt="."
-                  key={index}
-                  src={`https://source.unsplash.com/random`}
+                  key={data.id}
+                  src={data.imageUrl + `${data.id}/200/300`}
                 />
                 <div className="status-circle online"></div>
               </div>
               <div className="user-content">
-                <label>Bordin Intarama</label>
+                <label className="font-medium">{data.name}</label>
                 <div className="flex">
                   <p>You: &nbsp;</p>
-                  <p>{handleTextEllipsis("สวัสดีครับ")}</p>
+                  <p>{getTextEllipsis(data.latestMessage)}</p>
                   <p className="ml-1 mr-1"> · </p>
-                  <p>30 นาที</p>
+                  <p>
+                    {data.sendTime} {getSendUnitTime(data.sendTimeUnitId)}
+                  </p>
                 </div>
               </div>
               <div className="text-right flex-auto">Hi</div>

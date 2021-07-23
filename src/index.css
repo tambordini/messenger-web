@@ -50,7 +50,6 @@ body {
 }
 
 .chat-screen {
-  padding: 1rem;
   border: 1px solid gray;
   background-color: #242526;
   width: 100%;
@@ -101,6 +100,15 @@ input::placeholder {
   border-radius: 2rem;
 }
 
+.chat-screen-avatar {
+  object-fit: cover;
+  width: 50px;
+  max-width: 50px;
+  max-height: 50px;
+  height: 50px;
+  border-radius: 2rem;
+}
+
 .user-list:hover {
   cursor: pointer;
   background-color: rgb(80, 80, 80);
@@ -108,13 +116,19 @@ input::placeholder {
   animation: fadein 0.75s;
 }
 
-.user-list:active {
-  background-color: rgb(76, 88, 114);
+.user-list.active {
+  background-color: rgb(56, 69, 95);
 }
 
 .image-container {
   width: 60px;
   height: 60px;
+  position: relative;
+}
+
+.image-container-chat-screen {
+  width: 50px;
+  height: 50px;
   position: relative;
 }
 
@@ -137,8 +151,40 @@ input::placeholder {
   border: 2px solid white;
 }
 
+.chat-screen-header-icon {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.chat-screen-icon-tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.chat-screen-icon-tooltip:hover {
+  visibility: visible;
+}
+
+.chat-screen-content {
+  padding: 0.75rem;
+  box-shadow: 0 0 4px rgb(0, 0, 0, 0.2);
+}
+
+.chat-screen-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-icon {
+  width: 28px;
+  height: 28px;
+}
+
 p {
-  font-size: 12px;
+  font-size: 13px;
 }
 
 /* width */
@@ -157,6 +203,30 @@ p {
 ::-webkit-scrollbar-thumb {
   background: rgb(104, 104, 104);
   border-radius: 8px;
+}
+
+@media screen and (min-height: 668px) and (max-height: 768px) {
+  .user-list-box {
+    height: calc(82% - 25px);
+  }
+}
+
+@media screen and (min-height: 568px) and (max-height: 667px) {
+  .user-list-box {
+    height: calc(82% - 50px);
+  }
+}
+
+@media screen and (min-height: 468px) and (max-height: 567px) {
+  .user-list-box {
+    height: calc(82% - 75px);
+  }
+}
+
+@media screen and (max-height: 448px) {
+  .user-list-box {
+    height: calc(82% - 100px);
+  }
 }
 
 @media screen and (max-width: 850px) {

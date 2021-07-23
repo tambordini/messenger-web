@@ -1,4 +1,5 @@
 import React from "react";
+import ChatScreen from "./ChatScreen";
 import UserItem from "./UserItem";
 
 const Dashboard: React.FC = () => {
@@ -7,7 +8,9 @@ const Dashboard: React.FC = () => {
       <div className="user-item">
         <UserItem />
       </div>
-      <div className="chat-screen"></div>
+      <div className="chat-screen">
+        <ChatScreen />
+      </div>
     </div>
   );
 };
